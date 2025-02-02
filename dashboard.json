@@ -1,0 +1,1001 @@
+{
+  "uuid": "26311793-c222-4bfe-b0f4-861aeefb093e",
+  "title": "Museum",
+  "version": "2.4",
+  "settings": {
+    "pagenumber": 2,
+    "editable": true,
+    "fullscreenEnabled": false,
+    "parameters": {
+      "neodash_employee_date_of_birth": "1994-08-16",
+      "neodash_employee_date_of_birth_display": "1994-08-16",
+      "neodash_employee_emp_role": "manager",
+      "neodash_employee_emp_role_display": "manager",
+      "neodash_employee_hire_date": "2022-01-10",
+      "neodash_employee_hire_date_display": "2022-01-10",
+      "neodash_employee_manager_id": 3,
+      "neodash_employee_manager_id_display": 3,
+      "neodash_visited_visit_date": "2024-12-05",
+      "neodash_visited_visit_date_display": "2024-12-05",
+      "undefined": "Chkonia",
+      "undefined_display": "Chkonia",
+      "neodash_visitor_last_name": "Asatiani",
+      "neodash_visitor_last_name_display": "Asatiani",
+      "neodash_employee_employee_id": 2,
+      "neodash_employee_employee_id_display": 2,
+      "neodash_exhibition_exhibition_id": 1,
+      "neodash_exhibition_exhibition_id_display": 1,
+      "neodash_transaction_transaction_date": "",
+      "neodash_transaction_transaction_date_display": "",
+      "neodash_item_item_type": "artifact",
+      "neodash_item_item_type_display": "artifact",
+      "neodash_visitor_visitor_id": 4,
+      "neodash_visitor_visitor_id_display": 4
+    },
+    "theme": "light"
+  },
+  "pages": [
+    {
+      "title": "Parameters",
+      "reports": [
+        {
+          "id": "f5b18ea7-de67-4cea-8d90-4ee38aa024a2",
+          "title": "Employee Date of Birth",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`date_of_birth`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`date_of_birth` as value,  n.`date_of_birth` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "date_of_birth",
+            "propertyTypeDisplay": "date_of_birth",
+            "parameterName": "neodash_employee_date_of_birth",
+            "backgroundColor": "white"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "b4a477d7-c1a7-4a28-88ea-637a0e355076",
+          "title": "Employee Last Name",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`last_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`last_name` as value,  n.`last_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 5,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "last_name",
+            "propertyTypeDisplay": "last_name",
+            "parameterName": "neodash_employee_last_name"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "617458b2-5a31-491e-a99d-3f31ada684c2",
+          "title": "Employee First Name",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`first_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`first_name` as value,  n.`first_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 10,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "2d8bf929-06d6-45c2-9341-a64368957166",
+          "title": "Employee Email",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`email`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`email` as value,  n.`email` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 15,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "email",
+            "propertyTypeDisplay": "email",
+            "parameterName": "neodash_employee_email"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "7d6bb1bc-81d9-427b-9bcb-e515430d7117",
+          "title": "Employee Role",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`emp_role`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`emp_role` as value,  n.`emp_role` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 19,
+          "y": 0,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "emp_role",
+            "propertyTypeDisplay": "emp_role",
+            "parameterName": "neodash_employee_emp_role"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "73476f55-3909-4c33-8cc6-050228a2a69c",
+          "title": "Employee Id",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`employee_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`employee_id` as value,  n.`employee_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 0,
+          "y": 2,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "employee_id",
+            "propertyTypeDisplay": "employee_id",
+            "parameterName": "neodash_employee_employee_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "463b77fc-5ceb-4fc8-b9db-cad2a829ad0e",
+          "title": "Employee Hire Date",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`hire_date`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`hire_date` as value,  n.`hire_date` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 4,
+          "y": 2,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "hire_date",
+            "propertyTypeDisplay": "hire_date",
+            "parameterName": "neodash_employee_hire_date"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "25b04d11-0842-4eaa-a91d-7a2f91666bd3",
+          "title": "Employee Work Status",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`is_working`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`is_working` as value,  n.`is_working` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 9,
+          "y": 2,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "is_working",
+            "propertyTypeDisplay": "is_working",
+            "parameterName": "neodash_employee_is_working"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "3eadcb12-e026-4713-bc96-d50ee55e7331",
+          "title": "Employee Salary",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`salary`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`salary` as value,  n.`salary` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 14,
+          "y": 2,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "salary",
+            "propertyTypeDisplay": "salary",
+            "parameterName": "neodash_employee_salary"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "c29c2037-4630-4195-808e-05793c351ee8",
+          "title": "Employee Manager Id",
+          "query": "MATCH (n:`Employee`) \nWHERE toLower(toString(n.`manager_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`manager_id` as value,  n.`manager_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 19,
+          "y": 2,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Employee",
+            "propertyType": "manager_id",
+            "propertyTypeDisplay": "manager_id",
+            "parameterName": "neodash_employee_manager_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "b3790337-1a76-4a81-bbb3-6c53dbe0f9a6",
+          "title": "Exhibition duration",
+          "query": "MATCH (n:`Exhibition`) \nWHERE toLower(toString(n.`duration`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`duration` as value,  n.`duration` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 0,
+          "y": 4,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Exhibition",
+            "propertyType": "duration",
+            "propertyTypeDisplay": "duration",
+            "parameterName": "neodash_exhibition_duration"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "116e8dae-6e28-4e17-ae82-fc4622d34607",
+          "title": "Exhibition name",
+          "query": "MATCH (n:`Exhibition`) \nWHERE toLower(toString(n.`exhibition_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`exhibition_name` as value,  n.`exhibition_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 5,
+          "y": 4,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Exhibition"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "526245e3-4821-41b4-8491-ae21af878ec9",
+          "title": "Exhibition price",
+          "query": "MATCH (n:`Exhibition`) \nWHERE toLower(toString(n.`price`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`price` as value,  n.`price` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 10,
+          "y": 4,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Exhibition"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "e62c873b-7d72-4000-9f01-f696baacb3cd",
+          "title": "Exhibition is online?",
+          "query": "MATCH (n:`Exhibition`) \nWHERE toLower(toString(n.`is_online`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`is_online` as value,  n.`is_online` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 14,
+          "y": 4,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Exhibition",
+            "propertyType": "is_online",
+            "propertyTypeDisplay": "is_online",
+            "parameterName": "neodash_exhibition_is_online"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "d7d085f9-97f7-43e6-a0a4-33228f4de8f9",
+          "title": "Exhibition Id",
+          "query": "MATCH (n:`Exhibition`) \nWHERE toLower(toString(n.`exhibition_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`exhibition_id` as value,  n.`exhibition_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 19,
+          "y": 4,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Exhibition",
+            "propertyType": "exhibition_id",
+            "propertyTypeDisplay": "exhibition_id",
+            "parameterName": "neodash_exhibition_exhibition_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "dd4fe38a-9f84-40c1-b26d-77d542b0eb6b",
+          "title": "Visitor date of birth",
+          "query": "MATCH (n:`Visitor`) \nWHERE toLower(toString(n.`date_of_birth`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`date_of_birth` as value,  n.`date_of_birth` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 0,
+          "y": 6,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Visitor",
+            "propertyType": "date_of_birth",
+            "propertyTypeDisplay": "date_of_birth",
+            "parameterName": "neodash_visitor_date_of_birth"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "5595d70f-8fbb-437c-8e88-7b4f3d75c31c",
+          "title": "Visitor Id",
+          "query": "MATCH (n:`Visitor`) \nWHERE toLower(toString(n.`visitor_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`visitor_id` as value,  n.`visitor_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 5,
+          "y": 6,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Visitor",
+            "propertyType": "visitor_id",
+            "propertyTypeDisplay": "visitor_id",
+            "parameterName": "neodash_visitor_visitor_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "ef605034-f26f-4225-a04a-94cbc6265685",
+          "title": "Visitor last name",
+          "query": "MATCH (n:`Visitor`) \nWHERE toLower(toString(n.`last_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`last_name` as value,  n.`last_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 9,
+          "y": 6,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Visitor",
+            "propertyType": "last_name",
+            "propertyTypeDisplay": "last_name",
+            "parameterName": "neodash_visitor_last_name"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "e6962076-1553-4d16-a22c-d1e334c92647",
+          "title": "Visitor first name",
+          "query": "MATCH (n:`Visitor`) \nWHERE toLower(toString(n.`first_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`first_name` as value,  n.`first_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 14,
+          "y": 6,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Visitor",
+            "propertyType": "first_name",
+            "propertyTypeDisplay": "first_name",
+            "parameterName": "neodash_visitor_first_name"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "a45c4794-9f81-4455-ae94-b09be23cd80a",
+          "title": "Visitor email",
+          "query": "MATCH (n:`Visitor`) \nWHERE toLower(toString(n.`email`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`email` as value,  n.`email` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 19,
+          "y": 6,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Visitor",
+            "propertyType": "email",
+            "propertyTypeDisplay": "email",
+            "parameterName": "neodash_visitor_email"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "6ec7db2f-d02b-4736-a57a-b8e3cb8b7706",
+          "title": "Item historical period",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`historical_period`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`historical_period` as value,  n.`historical_period` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 5,
+          "height": 2,
+          "x": 0,
+          "y": 8,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item",
+            "propertyType": "historical_period",
+            "propertyTypeDisplay": "historical_period",
+            "parameterName": "neodash_item_historical_period"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "c5430f30-47be-4482-a7d9-04aa0e7f4781",
+          "title": "Item Id",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`item_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`item_id` as value,  n.`item_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 5,
+          "y": 8,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item",
+            "propertyType": "item_id",
+            "propertyTypeDisplay": "item_id",
+            "parameterName": "neodash_item_item_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "3be98e41-b989-41aa-a90f-456bbb6e14d7",
+          "title": "Item type",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`item_type`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`item_type` as value,  n.`item_type` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 9,
+          "y": 8,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item",
+            "propertyType": "item_type",
+            "propertyTypeDisplay": "item_type",
+            "parameterName": "neodash_item_item_type"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "3d24e92e-14cc-4a0d-9632-efaebd4eeee3",
+          "title": "Item origin",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`origin`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`origin` as value,  n.`origin` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 13,
+          "y": 8,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item",
+            "propertyType": "origin",
+            "propertyTypeDisplay": "origin",
+            "parameterName": "neodash_item_origin"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "b52539f2-93b2-467c-a0e0-b37920ce0d19",
+          "title": "Item description",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`description`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`description` as value,  n.`description` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 17,
+          "y": 8,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "d054dae9-a4ce-4e8c-b7f8-e6033afe586d",
+          "title": "Item name",
+          "query": "MATCH (n:`Item`) \nWHERE toLower(toString(n.`item_name`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`item_name` as value,  n.`item_name` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 0,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Item",
+            "propertyType": "item_name",
+            "propertyTypeDisplay": "item_name",
+            "parameterName": "neodash_item_item_name"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "ede0e865-f333-4e7c-bae9-04d6aaf416e0",
+          "title": "Room id",
+          "query": "MATCH (n:`Room`) \nWHERE toLower(toString(n.`room_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`room_id` as value,  n.`room_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 4,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Room",
+            "propertyType": "room_id",
+            "propertyTypeDisplay": "room_id",
+            "parameterName": "neodash_room_room_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "d5859764-a274-4e87-97f5-237e55cd32ec",
+          "title": "Room number",
+          "query": "MATCH (n:`Room`) \nWHERE toLower(toString(n.`room_number`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`room_number` as value,  n.`room_number` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 8,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Room",
+            "propertyType": "room_number",
+            "propertyTypeDisplay": "room_number",
+            "parameterName": "neodash_room_room_number"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "42b5393e-b68f-49c8-b245-cbb9c41968f5",
+          "title": "Transaction Id",
+          "query": "MATCH (n:`Transaction`) \nWHERE toLower(toString(n.`transaction_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`transaction_id` as value,  n.`transaction_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 12,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Transaction"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "728c1253-6f79-4597-a773-edf6b96c821c",
+          "title": "Transaction date",
+          "query": "MATCH (n:`Transaction`) \nWHERE toLower(toString(n.`transaction_date`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`transaction_date` as value,  n.`transaction_date` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 16,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Transaction",
+            "propertyType": "transaction_date",
+            "propertyTypeDisplay": "transaction_date",
+            "parameterName": "neodash_transaction_transaction_date"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "aab2deb3-8874-4882-9632-ddcc5d2891e2",
+          "title": "Transaction amountunt",
+          "query": "MATCH (n:`Transaction`) \nWHERE toLower(toString(n.`amount`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`amount` as value,  n.`amount` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 20,
+          "y": 10,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Transaction",
+            "propertyType": "amount",
+            "propertyTypeDisplay": "amount",
+            "parameterName": "neodash_transaction_amount"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "f15fe12e-c21b-48da-bc92-67b24bcb6263",
+          "title": "Inventory Id",
+          "query": "MATCH (n:`Inventory`) \nWHERE toLower(toString(n.`inventory_id`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`inventory_id` as value,  n.`inventory_id` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 0,
+          "y": 12,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Node Property",
+            "entityType": "Inventory",
+            "propertyType": "inventory_id",
+            "propertyTypeDisplay": "inventory_id",
+            "parameterName": "neodash_inventory_inventory_id"
+          },
+          "schema": [],
+          "database": "business"
+        },
+        {
+          "id": "884afcd8-8a5b-4057-8451-b0a471ef83bd",
+          "title": "Visit date",
+          "query": "MATCH ()-[n:`VISITED`]->() \nWHERE toLower(toString(n.`visit_date`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`visit_date` as value,  n.`visit_date` as display ORDER BY size(toString(value)) ASC LIMIT 5",
+          "width": 4,
+          "height": 2,
+          "x": 4,
+          "y": 12,
+          "type": "select",
+          "selection": {},
+          "settings": {
+            "type": "Relationship Property",
+            "entityType": "VISITED",
+            "propertyType": "visit_date",
+            "propertyTypeDisplay": "visit_date",
+            "parameterName": "neodash_visited_visit_date"
+          },
+          "schema": [],
+          "database": "business"
+        }
+      ]
+    },
+    {
+      "title": "Strategic Insights",
+      "reports": [
+        {
+          "id": "d53a24c4-85fa-4e6a-9f47-961888efd95f",
+          "title": "Employee management",
+          "query": "  // Match employees having a manager and find their corresponding manager nodes\nMATCH (e:Employee)\nWHERE e.manager_id IS NOT NULL\nMATCH (m:Employee {employee_id: e.manager_id})\n// Create a virtual MANAGES relationship from the manager (m) to the employee (e)\nWITH m, e, apoc.create.vRelationship(m, 'MANAGES', {}, e) AS r\nRETURN m AS Manager, e AS Employee, r AS ManagesRelationship\nORDER BY m.employee_id",
+          "width": 12,
+          "height": 4,
+          "x": 0,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "Employee": "(label)",
+            "MANAGES": "(label)"
+          },
+          "settings": {
+            "backgroundColor": "white"
+          },
+          "database": "business",
+          "schema": [
+            [
+              "Employee",
+              "emp_role",
+              "date_of_birth",
+              "employee_id",
+              "last_name",
+              "is_working",
+              "hire_date",
+              "salary",
+              "first_name",
+              "email",
+              "manager_id"
+            ],
+            [
+              "MANAGES"
+            ]
+          ]
+        },
+        {
+          "id": "d5b5a627-647c-46c0-8599-0b24a677671b",
+          "title": "Visitor-Exhibition engagement",
+          "query": "MATCH (v:Visitor)-[r:VISITED]->(ex:Exhibition)\nWHERE r.visit_date IS NOT NULL\nRETURN v.first_name AS FirstName,\n       v.last_name AS LastName,\n       ex.exhibition_name AS Exhibition,\n       r.visit_date AS VisitDate\nORDER BY r.visit_date DESC",
+          "width": 12,
+          "height": 4,
+          "x": 12,
+          "y": 0,
+          "type": "table",
+          "selection": {},
+          "settings": {
+            "backgroundColor": "#FF62F2BA"
+          },
+          "database": "business"
+        },
+        {
+          "id": "ee819933-d399-4a90-81bf-b0daaf97b44c",
+          "title": "Exhibition popularity",
+          "query": "\n// Count the number of visits for each exhibition.\nMATCH (ex:Exhibition)<-[r:VISITED]-(:Visitor)\nRETURN ex.exhibition_name AS Exhibition,\n       count(r) AS VisitCount\nORDER BY VisitCount DESC\n\n",
+          "width": 24,
+          "height": 8,
+          "x": 0,
+          "y": 4,
+          "type": "pie",
+          "selection": {
+            "index": "Exhibition",
+            "value": "VisitCount",
+            "key": "(none)"
+          },
+          "settings": {
+            "backgroundColor": "#71FFFF75",
+            "colors": "set1"
+          },
+          "database": "business",
+          "schema": []
+        },
+        {
+          "id": "f0d57e5b-c99f-41dd-b224-973cac2c4b37",
+          "title": "Item provenance distribution",
+          "query": "// Group items by historical period and count the number of items in each period.\n// This query returns two columns: the historical period (x) and the corresponding count (y).\nMATCH (i:Item)\nRETURN i.historical_period AS x, count(i) AS y\nORDER BY x",
+          "width": 24,
+          "height": 5,
+          "x": 0,
+          "y": 12,
+          "type": "bar",
+          "selection": {
+            "index": "x",
+            "value": "y",
+            "key": "(none)"
+          },
+          "settings": {
+            "padding": 0.25
+          },
+          "database": "business",
+          "schema": []
+        },
+        {
+          "id": "3a29ea36-e2c9-4015-b346-a663aadcd862",
+          "title": "Transaction financial trends",
+          "query": "// Aggregate transactions by date to calculate total revenue and average transaction value per day.\nMATCH (t:Transaction)\nRETURN t.transaction_date AS Date,\n       sum(t.amount) AS TotalRevenue,\n       avg(t.amount) AS AvgTransaction\nORDER BY t.transaction_date\n\n\n",
+          "width": 24,
+          "height": 4,
+          "x": 0,
+          "y": 17,
+          "type": "line",
+          "selection": {
+            "x": "Date",
+            "value": [
+              "TotalRevenue"
+            ]
+          },
+          "settings": {},
+          "database": "business",
+          "schema": []
+        }
+      ]
+    },
+    {
+      "title": "Explorer page",
+      "reports": [
+        {
+          "id": "befb377f-2183-4b0f-af07-daf84c78bb59",
+          "title": "Employee assignment",
+          "query": "MATCH (emp:Employee)-[a:ASSIGNED_TO]->(ex:Exhibition)\nWHERE emp.employee_id = $neodash_employee_employee_id\nOR $neodash_employee_employee_id IS NULL\nRETURN emp, a, ex",
+          "width": 10,
+          "height": 4,
+          "x": 0,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "Employee": "(label)",
+            "ASSIGNED_TO": "(label)",
+            "Exhibition": "(label)"
+          },
+          "settings": {},
+          "database": "business",
+          "schema": [
+            [
+              "Employee",
+              "emp_role",
+              "manager_id",
+              "date_of_birth",
+              "employee_id",
+              "last_name",
+              "is_working",
+              "hire_date",
+              "salary",
+              "first_name",
+              "email"
+            ],
+            [
+              "ASSIGNED_TO"
+            ],
+            [
+              "Exhibition",
+              "duration",
+              "exhibition_name",
+              "price",
+              "exhibition_id",
+              "is_online"
+            ]
+          ]
+        },
+        {
+          "id": "cc518b12-1bf6-4007-bc7c-39ceb508b1fd",
+          "title": "Average salary by role",
+          "query": "MATCH (emp:Employee)\nRETURN emp.emp_role AS Role,\n       ROUND(AVG(emp.salary)) AS AvgSalary\nORDER BY AvgSalary DESC",
+          "width": 8,
+          "height": 4,
+          "x": 10,
+          "y": 0,
+          "type": "bar",
+          "selection": {
+            "index": "Role",
+            "value": "AvgSalary",
+            "key": "(none)"
+          },
+          "settings": {},
+          "database": "business",
+          "schema": []
+        },
+        {
+          "id": "4c17186b-398e-41b5-bf02-ceb0804174cf",
+          "title": "Inventory-item network",
+          "query": "// Retrieves Item nodes, their STORED_IN relationships to Inventory, and Inventory nodes' LOCATED_IN relationships to Room nodes.\nMATCH (i:Item)-[s:STORED_IN]->(inv:Inventory)\nMATCH (inv)-[l:LOCATED_IN]->(r:Room)\nRETURN i, inv, r, s, l",
+          "width": 9,
+          "height": 4,
+          "x": 0,
+          "y": 4,
+          "type": "graph",
+          "selection": {
+            "Item": "(label)",
+            "Inventory": "(label)",
+            "Room": "(label)",
+            "STORED_IN": "(label)",
+            "LOCATED_IN": "(label)"
+          },
+          "settings": {},
+          "schema": [
+            [
+              "Item",
+              "historical_period",
+              "item_id",
+              "item_type",
+              "origin",
+              "description",
+              "item_name"
+            ],
+            [
+              "Inventory",
+              "room_id",
+              "item_id",
+              "inventory_id"
+            ],
+            [
+              "Room",
+              "room_id",
+              "room_number"
+            ],
+            [
+              "STORED_IN"
+            ],
+            [
+              "LOCATED_IN"
+            ]
+          ],
+          "database": "business"
+        },
+        {
+          "id": "fb9d75e7-86f2-43fa-ae61-a5467816d912",
+          "title": "Exhibition revenue",
+          "query": "\n\nMATCH (tx:Transaction)-[f:FOR]->(ex:Exhibition)\nRETURN tx, f, ex\n",
+          "width": 6,
+          "height": 4,
+          "x": 18,
+          "y": 0,
+          "type": "graph",
+          "selection": {
+            "Transaction": "(label)",
+            "FOR": "(label)",
+            "Exhibition": "(label)"
+          },
+          "settings": {},
+          "schema": [
+            [
+              "Transaction",
+              "transaction_id",
+              "transaction_date",
+              "amount",
+              "exhibition_id",
+              "visitor_id"
+            ],
+            [
+              "FOR"
+            ],
+            [
+              "Exhibition",
+              "duration",
+              "exhibition_name",
+              "price",
+              "exhibition_id",
+              "is_online"
+            ]
+          ],
+          "database": "business"
+        },
+        {
+          "id": "fd0a1f3f-28e4-472c-9ee4-7d156fa7414f",
+          "title": "Visitor-exhibition network",
+          "query": "// Retrieves Visitor and Exhibition nodes along with their VISITED relationships.\nMATCH (v:Visitor)-[r:VISITED]->(ex:Exhibition)\nRETURN v, r, ex",
+          "width": 6,
+          "height": 4,
+          "x": 9,
+          "y": 4,
+          "type": "graph",
+          "selection": {
+            "Visitor": "(label)",
+            "VISITED": "(label)",
+            "Exhibition": "(label)"
+          },
+          "settings": {},
+          "database": "business",
+          "schema": [
+            [
+              "Visitor",
+              "date_of_birth",
+              "visitor_id",
+              "last_name",
+              "first_name",
+              "email"
+            ],
+            [
+              "VISITED",
+              "visit_date"
+            ],
+            [
+              "Exhibition",
+              "duration",
+              "exhibition_name",
+              "price",
+              "exhibition_id",
+              "is_online"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "parameters": {},
+  "extensions": {
+    "active": true,
+    "activeReducers": []
+  }
+}
