@@ -1,0 +1,200 @@
+visitors
+
+LOAD CSV WITH HEADERS FROM 'file:///visitor.csv' AS row
+CREATE (:Visitor {
+    visitor_id: toInteger(row.visitor_id),
+    first_name: row.first_name,
+    last_name: row.last_name,
+    date_of_birth: date(
+        CASE 
+            WHEN toInteger(substring(row.date_of_birth, 6, 2)) > 30 
+            THEN "19" + substring(row.date_of_birth, 6, 2) 
+            ELSE "20" + substring(row.date_of_birth, 6, 2) 
+        END + "-" + 
+        substring(row.date_of_birth, 3, 2) + "-" + 
+        substring(row.date_of_birth, 0, 2)
+    ),
+    email: row.email
+});
+
+
+Employees
+
+LOAD CSV WITH HEADERS FROM 'file:///employee.csv' AS row
+CREATE (:Employee {
+    employee_id: toInteger(row.employee_id),
+    first_name: row.first_name,
+    last_name: row.last_name,
+    date_of_birth: date(
+        CASE 
+            WHEN toInteger(split(row.date_of_birth, '-')[2]) > 30 
+            THEN "19" + split(row.date_of_birth, '-')[2] 
+            ELSE "20" + split(row.date_of_birth, '-')[2] 
+        END + "-" + 
+        split(row.date_of_birth, '-')[1] + "-" + 
+        split(row.date_of_birth, '-')[0]
+    ),
+    email: row.email,
+    salary: toInteger(row.salary),
+    hire_date: date(
+        CASE 
+            WHEN size(row.hire_date) = 8 THEN 
+                "20" + substring(row.hire_date, 6, 2) + "-" +
+                substring(row.hire_date, 3, 2) + "-" +
+                substring(row.hire_date, 0, 2)
+            ELSE row.hire_date
+        END
+    ),
+    emp_role: row.emp_role,
+    manager_id: CASE WHEN row.manager_id IS NOT NULL THEN toInteger(row.manager_id) ELSE NULL END,
+    is_working: row.is_working = 'True'
+});
+
+
+
+Exhibition
+
+LOAD CSV WITH HEADERS FROM 'file:///exhibition.csv' AS row
+CREATE (:Exhibition {
+    exhibition_id: toInteger(row.exhibition_id),
+    exhibition_name: row.exhibition_name,
+    start_date: date(
+        CASE 
+            WHEN size(row.start_date) >= 10 
+            THEN substring(row.start_date, 0, 10) 
+            ELSE null 
+        END
+    ),
+    end_date: date(
+        CASE 
+            WHEN size(row.end_date) >= 10 
+            THEN substring(row.end_date, 0, 10) 
+            ELSE null 
+        END
+    ),
+    duration: row.duration,
+    is_online: row.is_online = 'True',
+    price: toInteger(row.price)
+});
+
+
+
+Item
+
+LOAD CSV WITH HEADERS FROM 'file:///item.csv' AS row
+CREATE (:Item {
+    item_id: toInteger(row.item_id),
+    item_name: row.item_name,
+    item_type: row.item_type,
+    description: row.description,
+    historical_period: row.historical_period,
+    origin: row.origin
+});
+
+
+
+Room
+
+LOAD CSV WITH HEADERS FROM 'file:///room.csv' AS row
+CREATE (:Room {
+    room_id: toInteger(row.room_id),
+    room_number: toInteger(row.room_number)
+});
+
+
+
+Inventory
+
+LOAD CSV WITH HEADERS FROM 'file:///inventory.csv' AS row
+CREATE (:Inventory {
+    inventory_id: toInteger(row.inventory_id),
+    item_id: toInteger(row.item_id),
+    room_id: toInteger(row.room_id)
+});
+
+
+Transaction
+
+LOAD CSV WITH HEADERS FROM 'file:///transaction_.csv' AS row
+CREATE (:Transaction {
+    transaction_id: toInteger(row.transaction_id),
+    visitor_id: toInteger(row.visitor_id),
+    exhibition_id: toInteger(row.exhibition_id),
+    amount: toInteger(row.amount),
+    transaction_date: date(
+        CASE 
+            WHEN size(row.transaction_date) >= 10 
+            THEN substring(row.transaction_date, 0, 10) 
+            ELSE null 
+        END
+    )
+});
+
+
+
+RELATIONSHIPS
+
+Visitor to exhibition
+
+LOAD CSV WITH HEADERS FROM 'file:///visitors_on_exhibition.csv' AS row
+MATCH (v:Visitor {visitor_id: toInteger(row.visitor_id)})
+MATCH (e:Exhibition {exhibition_id: toInteger(row.exhibition_id)})
+MERGE (v)-[:VISITED {visit_date: date(
+        CASE 
+            WHEN size(row.visit_date) >= 10 
+            THEN substring(row.visit_date, 0, 10) 
+            ELSE null 
+        END
+    )}]->(e);
+
+
+
+Item to Exhibition Relationships
+
+LOAD CSV WITH HEADERS FROM 'file:///item_on_exhibition.csv' AS row
+MATCH (i:Item {item_id: toInteger(row.item_id)})
+MATCH (e:Exhibition {exhibition_id: toInteger(row.exhibition_id)})
+MERGE (i)-[:DISPLAYED_IN]->(e);
+
+
+
+Employee to Exhibition Relationships
+
+
+LOAD CSV WITH HEADERS FROM 'file:///shift_on_exhibition.csv' AS row
+MATCH (emp:Employee {employee_id: toInteger(row.employee_id)})
+MATCH (e:Exhibition {exhibition_id: toInteger(row.exhibition_id)})
+MERGE (emp)-[:ASSIGNED_TO]->(e);
+
+
+Visitor to Transaction
+
+LOAD CSV WITH HEADERS FROM 'file:///transaction_.csv' AS row
+MATCH (v:Visitor {visitor_id: toInteger(row.visitor_id)})
+MATCH (t:Transaction {transaction_id: toInteger(row.transaction_id)})
+MERGE (v)-[:MADE]->(t);
+
+
+Transaction to Exhibition
+
+LOAD CSV WITH HEADERS FROM 'file:///transaction_.csv' AS row
+MATCH (t:Transaction {transaction_id: toInteger(row.transaction_id)})
+MATCH (e:Exhibition {exhibition_id: toInteger(row.exhibition_id)})
+MERGE (t)-[:FOR]->(e);
+
+
+Item to Inventory
+
+LOAD CSV WITH HEADERS FROM 'file:///inventory.csv' AS row
+MATCH (i:Item {item_id: toInteger(row.item_id)})
+MATCH (inv:Inventory {inventory_id: toInteger(row.inventory_id)})
+MERGE (i)-[:STORED_IN]->(inv);
+
+Inventory to Room
+
+LOAD CSV WITH HEADERS FROM 'file:///inventory.csv' AS row
+MATCH (inv:Inventory {inventory_id: toInteger(row.inventory_id)})
+MATCH (r:Room {room_id: toInteger(row.room_id)})
+MERGE (inv)-[:LOCATED_IN]->(r);
+
+
